@@ -11,6 +11,27 @@ var routes      = require('./routes');
 var activity    = require('./routes/activity');
 
 var app = express();
+var axios = require('axios');
+
+var postData = {
+  clientId: "riqiuc9qbdkh4h8r35copah4",
+  clientSecret: "9ZjlEae1SxmntD7SzuHRJhVt"
+};
+
+let axiosConfig = {
+  headers: {
+      'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "*",
+  }
+};
+
+axios.post('https://mctsn6bw1923klh682tqrnhqtql1.auth.marketingcloudapis.com/v1/requestToken', postData, axiosConfig)
+.then((res) => {
+  console.log("RESPONSE RECEIVED: ", res.data);
+})
+.catch((err) => {
+  console.log("AXIOS ERROR: ", err);
+})
 
 // Configure Express
 app.set('port', process.env.PORT || 3000);

@@ -18,9 +18,16 @@
            "inArguments":[
 				{
                     "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
+                },
+                {
+                    "phoneNumber": "{{Contact.Attribute.CustomActivity.PhoneNumber}}"
                 }									
 			],
-          "outArguments": [],
+          "outArguments": [
+            {
+                "foundSignupDate": ""
+            }
+          ],
           "url": "https://https://jb-activity-template.herokuapp.com/journeybuilder/execute",
            "verb": "POST",
             "body": "",
@@ -54,7 +61,11 @@
       }
     },
     "wizardSteps": [
-        { "label": "Configure Activity", "key": "step1" }
+        { "label": "Configure Activity", "key": "step1" },
+        { "label": "Step 1", "key": "step1" },
+        { "label": "Step 2", "key": "step2" },
+        { "label": "Step 3", "key": "step3" },
+        { "label": "Step 4", "key": "step4", "active": false }
     ],
     "userInterfaces": {
         "configModal": {
@@ -66,8 +77,31 @@
     "schema": {
         "arguments": {
             "execute": {
-                "inArguments": [],
-                "outArguments": []
+                "inArguments": [
+                  {
+                      "phoneNumber": {
+                          "dataType": "Phone",
+                          "isNullable": false,
+                          "direction": "in"   
+                      }
+                  },
+                  {
+                      "emailAddress": {
+                          "dataType": "Email",
+                          "isNullable": false,
+                          "direction": "in"
+                      }
+                  }
+                ],
+                "outArguments": [
+                  {
+                    "foundSignupDate": {
+                        "dataType": "Date",
+                        "direction": "out",
+                        "access": "visible"
+                    }
+                  }
+                ]
             }
         }
     }
